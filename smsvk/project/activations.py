@@ -129,14 +129,9 @@ def get_code_activation_mode(func):
         logging.info(f"Results from waite_code received len(r) = {len(r)}, r = {r}")
         code_true = [(i[0], i[1], i[2], 6) for i in r if type(i[2]) == int] #set 6
         logging.info(f"Results sms: code_true = {code_true}")
-        #wait_resend = [ (i[0],i[1],i[2], 6) for i in r if i[2] == 'STATUS_WAIT_RESEND' ] #set6, send after sms repeat
         other = [(i[0], i[1], i[2], 8) for i in r if i[2] != 'STATUS_WAIT_RESEND' and type(i[2]) != int ] #and i[3] != 'STATUS_CANCEL' and i[3] != 'NO_ACTIVATION'
         logging.info(f"Results other: len(other) = {len(other)}")
-
-        #if code_true:
-            #logging.info(f"Send status 6 for code_true={code_true}")
-            #args[0].request_(code_true) #send 6 
-        
+       
         if other:
             logging.info(f"Send status 8 for other={other}")
             args[0].request_(other) #send 8 chancel activation
