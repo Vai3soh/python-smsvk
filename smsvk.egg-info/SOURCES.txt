@@ -1,0 +1,9 @@
+LICENSE
+README.md
+setup.py
+smsvk/__init__.py
+smsvk.egg-info/PKG-INFO
+smsvk.egg-info/SOURCES.txt
+smsvk.egg-info/dependency_links.txt
+smsvk.egg-info/requires.txt
+smsvk.egg-info/top_level.txt
