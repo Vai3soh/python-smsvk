@@ -1,0 +1,9 @@
+aiohttp==3.7.4.post0
+async-timeout==3.0.1
+attrs==20.3.0
+chardet==4.0.0
+idna==3.1
+multidict==5.1.0
+typing-extensions==3.7.4.3
+yarl==1.6.3
+random-useragent @ git+https://github.com/drinorselmanaj/random_useragent.git@538d70cf9d11b176edeef04531d1b8a1a9d631a6
