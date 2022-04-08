@@ -9,10 +9,17 @@ from asyncio import TimeoutError
 from .logwr import logging
 from random_useragent.random_useragent import Randomize
 
+
 class Api:
 
-    def __init__(self, api_key, count_phone_number, timeout, limit, user_agent):  
-        self.api_key = api_key  
+    def __init__(
+            self,
+            api_key,
+            count_phone_number,
+            timeout,
+            limit,
+            user_agent):
+        self.api_key = api_key
         self.number = count_phone_number
         self.timeout = timeout
         self.limit = limit
@@ -22,7 +29,7 @@ class Api:
         try:
             logging.info(f"Send from \"{class_name}\" get request to {url}")
             type_, device = self.user_agent
-            head = { 'User-Agent': Randomize().random_agent(type_,device)}
+            head = {'User-Agent': Randomize().random_agent(type_, device)}
             async with session.get(url, timeout=self.timeout, headers=head, raise_for_status=True) as resp:
                 assert resp.status == 200, f"Only 200 response status code, code:{resp.status}"
                 if fname == 'request_json':
@@ -33,9 +40,9 @@ class Api:
                     r = await resp.text()
                     logging.info(f"Content ({class_name}) from {url} - {r}")
                     return r
-        except (ClientResponseError, ClientConnectorError, TimeoutError, 
-                ContentTypeError, ClientHttpProxyError, #IncompleteReadError,
-                WSServerHandshakeError, ClientProxyConnectionError, 
+        except (ClientResponseError, ClientConnectorError, TimeoutError,
+                ContentTypeError, ClientHttpProxyError,  # IncompleteReadError,
+                WSServerHandshakeError, ClientProxyConnectionError,
                 AssertionError, ClientSSLError) as e:
             logging.error(f"Error ({class_name}) api get request: {e}")
             return f"Error api get request: {e}"
@@ -78,4 +85,3 @@ class Api:
         future = asyncio.ensure_future(self.run(*args))
         data = loop.run_until_complete(future)
         return data
-    
